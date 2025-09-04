@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Queue - QR Queue Management</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="visitor-container">
+        <div class="visitor-form" id="joinForm">
+            <div class="visitor-icon">
+                👥
+            </div>
+            <h1>You are about to join "<span id="queueName">LOADING</span>" queue</h1>
+            <p class="subtitle">Press the button below to join</p>
+
+            <form id="visitorForm">
+                <div class="form-group">
+                    <input type="text" id="visitorName" placeholder="ENTER YOUR NAME" required>
+                </div>
+                
+                <div id="additionalFields" style="display: none;">
+                    <div class="form-group">
+                        <input type="tel" id="visitorPhone" placeholder="Phone number (optional)">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="visitorEmail" placeholder="Email (optional)">
+                    </div>
+                </div>
+
+                <div class="error-message" id="errorMessage"></div>
+
+                <button type="submit" id="joinBtn" class="btn btn-primary">
+                    <span class="btn-text">Join</span>
+                    <div class="loader" style="display: none;"></div>
+                </button>
+            </form>
+        </div>
+
+        <!-- Success Animation -->
+        <div class="visitor-form" id="successMessage" style="display: none;">
+            <div class="success-icon">
+                <div class="checkmark">✓</div>
+            </div>
+            <h1>Welcome to the queue!</h1>
+            <p>You have successfully joined the <span id="successQueueName"></span> queue.</p>
+            <div style="margin: 24px 0; padding: 16px; background: #dbeafe; border-radius: 8px;">
+                <p style="color: #6b7280; font-size: 14px;">Redirecting to your queue status...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7/bundles/stomp.umd.min.js"></script>
+    <script src="../api.js"></script>
+    <script src="visitor-join.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - QR Queue Management</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1><span id="queueName">LOADING</span></h1>
+            <p>There is <span id="waitingCount">0</span> visitor<span id="waitingPlural"> waiting</span></p>
+        </div>
+
+        <div class="admin-content">
+            <div class="serving-section">
+                <h2>Currently serving</h2>
+                <div class="current-number" id="currentServing">000</div>
+            </div>
+
+            <div class="admin-buttons">
+                <button id="inviteNextBtn" class="btn btn-primary">
+                    <span class="btn-text">Invite next</span>
+                    <div class="loader" style="display: none;"></div>
+                </button>
+                
+                <button id="inviteByNumberBtn" class="btn btn-outline">
+                    Invite by number
+                </button>
+                
+                <button id="addVisitorBtn" class="btn btn-outline">
+                    ➕ Add
+                </button>
+                
+                <button id="removeVisitorsBtn" class="btn btn-danger">
+                    Remove visitors
+                </button>
+                
+                <button class="btn" style="background: none; color: #3b82f6; text-decoration: underline;">
+                    Report a problem
+                </button>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7/bundles/stomp.umd.min.js"></script>
+    <script src="../api.js"></script>
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>
