@@ -2,6 +2,7 @@ package com.example.queue.repository;
 
 import com.example.queue.entity.QueueEntry;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,4 +15,7 @@ public interface QueueEntryRepository extends JpaRepository<QueueEntry, Long> {
     int countByQueueIdAndStatus(Long queueId, QueueEntry.EntryStatus status);
     Optional<QueueEntry> findByTokenNumber(String tokenNumber);
     Optional<QueueEntry> findFirstByQueueIdAndStatusOrderByPositionAsc(Long queueId, QueueEntry.EntryStatus status);
+
+    @Query("SELECT MAX(CAST(qe.tokenNumber AS int)) FROM QueueEntry qe WHERE qe.queue.id = :queueId")
+    Integer findMaxTokenNumberByQueueId(Long queueId);
 }

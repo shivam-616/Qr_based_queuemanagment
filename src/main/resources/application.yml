@@ -3,21 +3,16 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: 
+    url: jdbc:mysql://localhost:3306/your-database
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 121@Shivam
   
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
-  
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
 
 logging:
   level:
@@ -25,3 +20,4 @@ logging:
 
 app:
   base-url: http://localhost:3000
+  frontend-url: http://localhost:3000

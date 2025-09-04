@@ -1,11 +1,5 @@
 package com.example.queue.controller;
 
-//import com.queuemanagement.dto.QueueCreateRequest;
-//import com.queuemanagement.dto.QueueEntryRequest;
-//import com.queuemanagement.dto.QueueStatusResponse;
-//import com.queuemanagement.entity.Queue;
-//import com.queuemanagement.entity.QueueEntry;
-//import com.queuemanagement.service.QueueService;
 import com.example.queue.dto.QueueCreateRequest;
 import com.example.queue.dto.QueueEntryRequest;
 import com.example.queue.dto.QueueStatusResponse;
@@ -14,6 +8,7 @@ import com.example.queue.entity.QueueEntry;
 import com.example.queue.service.QueueService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +23,9 @@ public class QueueController {
     @Autowired
     private QueueService queueService;
 
+    @Value("${app.frontend-url}")
+    private String frontendUrl;
+
     @PostMapping
     public ResponseEntity<Map<String, Object>> createQueue(@RequestBody QueueCreateRequest request) {
         try {
@@ -38,11 +36,11 @@ public class QueueController {
             response.put("name", queue.getName());
             response.put("description", queue.getDescription());
             response.put("askVisitorDetails", queue.getAskVisitorDetails());
-            response.put("visitorLink", "http://localhost:3000/visitor/" + queue.getId());
-            response.put("adminLink", "http://localhost:3000/admin/" + queue.getId());
+            response.put("visitorLink", frontendUrl + "/visitor/" + queue.getId());
+            response.put("adminLink", frontendUrl + "/admin/" + queue.getId());
             response.put("qrCode", "data:image/png;base64," + queue.getQrCode());
-            response.put("statusDisplayLink", "http://localhost:3000/status/" + queue.getId());
-            response.put("posterLink", "http://localhost:3000/poster/" + queue.getId());
+            response.put("statusDisplayLink", frontendUrl + "/status/" + queue.getId());
+            response.put("posterLink", frontendUrl + "/poster/" + queue.getId());
             
             return ResponseEntity.ok(response);
         } catch (Exception e) {

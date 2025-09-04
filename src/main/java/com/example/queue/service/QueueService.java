@@ -1,12 +1,5 @@
 package com.example.queue.service;
 
-//import com.example.dto.QueueCreateRequest;
-//import com.queuemanagement.dto.QueueEntryRequest;
-//import com.queuemanagement.dto.QueueStatusResponse;
-//import com.queuemanagement.entity.Queue;
-//import com.queuemanagement.entity.QueueEntry;
-//import com.queuemanagement.repository.QueueEntryRepository;
-//import com.queuemanagement.repository.QueueRepository;
 import com.example.queue.dto.QueueCreateRequest;
 import com.example.queue.dto.QueueEntryRequest;
 import com.example.queue.dto.QueueStatusResponse;
@@ -70,11 +63,14 @@ public class QueueService {
             throw new RuntimeException("Queue is not active");
         }
 
-        // Get current position in queue
+        // Get the last token number and increment it
+        Integer lastToken = queueEntryRepository.findMaxTokenNumberByQueueId(queueId);
+        int newTokenNumberInt = (lastToken != null) ? lastToken + 1 : 1;
+        String tokenNumber = String.format("%03d", newTokenNumberInt);
+
+
         int currentPosition = queueEntryRepository.countByQueueIdAndStatus(queueId, QueueEntry.EntryStatus.WAITING) + 1;
 
-        // Generate token number
-        String tokenNumber = String.format("%03d", currentPosition);
 
         // Create queue entry
         QueueEntry entry = new QueueEntry();
