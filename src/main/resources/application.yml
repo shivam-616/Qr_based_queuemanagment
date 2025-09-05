@@ -19,5 +19,5 @@ logging:
     com.queuemanagement: DEBUG
 
 app:
-  base-url: http://localhost:3000
-  frontend-url: http://localhost:3000
+  base-url: http://localhost:8080
+  frontend-url: http://localhost:8080

@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         
         // Redirect to visitor status page after 3 seconds
         setTimeout(() => {
-            window.location.href = `../visitor-status/index.html?queue=${queueId}&token=${joinResponse.tokenNumber}`;
+            window.location.href = `../status/index.html?queue=${queueId}&token=${joinResponse.tokenNumber}`;
         }, 3000);
     }
 });
